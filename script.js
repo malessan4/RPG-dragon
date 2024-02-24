@@ -1,2 +1,3 @@
-let camperboy; xp
+let camperbot;
+let xp;
 console.log("Hello World");
