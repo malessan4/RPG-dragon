@@ -18,7 +18,7 @@ const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth ");
 
 const weapons = [
-  
+
   {
     name: "stick",
     power: 5,
@@ -105,8 +105,14 @@ function buyHealth()  {
   }
 }
 
-function buyWeapon () {
-    
+function buyWeapon() {
+  if (gold >= 30) {
+    gold -= 30;
+    currentWeapon++;
+    goldText.innerText = gold;
+    let newWeapon = weapons[currentWeapon].name;
+    text.innerText = "You now have a " + newWeapon + ".";
+  }
 }
 
 function fightSlime () {
