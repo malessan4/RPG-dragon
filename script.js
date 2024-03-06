@@ -90,6 +90,20 @@ const locations = [
     "button text": ["Attack", "Dodge", "Run"],
     "button functions": [attack, dodge, goTown],
     text: "You are fighting a monster."
+  },
+
+  {
+    name: "kill monster",
+    "button text": ["Go to town square", "Go to town square", "Go to town square", ],
+    "button functions": [goTown, goTown, goTown],
+    text: 'The monster screams "Arg!" as it dies. You gain experience points and find gold.'
+  },
+
+  {
+    name: "lose",
+    "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
+    "button functions": [restart, restart, restart],
+    text: 'You die. &#x2620;'
   }
 
 ];
@@ -189,6 +203,9 @@ function attack () {
      lose();
   } else if (monsterHealth <= 0){
   defeatMonster ();
+  if (fighting===2) {
+    winGame();
+  }else (defeatMonster())
   } 
 }
 
@@ -201,27 +218,37 @@ function defeatMonster () {
   xp += monsters[fighting].level;
   goldText.innerText = gold;
   xpText.innerText = xpText;
+  update(locations[4]);
 }
 
 function lose () {
+  update (locations[5]);
 
 }
 
 function update(location) {
+  monsterStats.style.display = "none";
   button1.innerText = location["button text"][0];
   button2.innerText = location["button text"][1];
   button3.innerText = location["button text"][2];
   button1.onclick = location["button functions"][0];
   button2.onclick = location["button functions"][1];
   button3.onclick = location["button functions"][2];
-  text.innerText = location.text;
-  button1.innerText = "Buy 10 health (10 gold)";
-  button2.innerText = "Buy weapon (30 gold)";
-  button3.innerText = "Go to town square";
-  button1.onclick = buyHealth;
-  button2.onclick = buyWeapon;
-  button3.onclick = goTown;
-  text.innerText = "You enter the store.";
+  text.innerHTML = location.text;
+
+}
+
+function restart(){
+  xp=0;
+  health=100;
+  gold=50;
+  currentWeapon=0;
+  inventory = ["stick"];
+  goldText.innerText = gold;
+  healthText.innerText = health;
+  xpText.innerText = xp;
+
+  goTown();
 
 }
 
