@@ -181,21 +181,21 @@ function sellWeapon () {
 }
 
 function fightSlime () {
-  function goFight () {
-    fighting = 0
-  }
+  fighting = 0
+   goFight () 
+
 }
 
 function fightBeast () {
-  function goFight () {
-    fighting = 1
-  }
+  fighting = 1
+   goFight () 
+  
 }
 
 function fightDragon () {
-  function goFight () {
-    fighting = 2
-  }
+  fighting = 2
+   goFight () 
+
 }
 
 function goFight () {
